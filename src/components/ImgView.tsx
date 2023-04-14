@@ -2,25 +2,26 @@
 
 import React,{ useState,useEffect } from 'react'
 import Image from 'next/image'
-
+import {Button, Grid ,Box } from '@mui/material';
 interface Props{
-
+      imgs:string[]
 }
 
-const ImgView:React.FC<Props>=()=>{
+const ImgView:React.FC<Props>=(props)=>{
     return(
-        <React.Fragment>
-            
-            <Image
-                
-                src="/imgs/1.jpg"
-                alt="Next.js Logo"
-                width={400}
-                height={100}
-                priority
-                />
-            
-        </React.Fragment>
+        <Box sx={{padding:2}}>
+            {props.imgs.map((img,key)=>
+                (<Image
+                        key={key}
+                        src={img}
+                        alt="Next.js Logo"
+                        width={400}
+                        height={400}
+                        priority
+                        />
+                ))
+            }
+        </Box>
     )
 }
 
