@@ -8,7 +8,7 @@ interface Props{
     handlePrev: React.MouseEventHandler<HTMLButtonElement>;
     handleNext: React.MouseEventHandler<HTMLButtonElement>;
     handleRotate:React.MouseEventHandler<HTMLButtonElement>;
-    handleUpload:React.MouseEventHandler<HTMLButtonElement>
+    handleUpload:React.ChangeEventHandler<HTMLInputElement>
 }
 
 const MainView:React.FC<Props>=(props)=>{

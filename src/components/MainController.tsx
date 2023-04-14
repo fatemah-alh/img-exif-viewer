@@ -9,7 +9,7 @@ const MainController:React.FC<Props>=(props)=>{
     const model=MainModel()
     const initialImgs=model.images
     const [imgs,setImgs]=useState(initialImgs);
-    const [selectedImg,setSelectedImg]=useState(null);
+    const [selectedImg,setSelectedImg]=useState(initialImgs[0]);
     /*
     useEffect(() => {
         setImgs(initialImgs);
@@ -34,7 +34,8 @@ const MainController:React.FC<Props>=(props)=>{
                       handlePrev={handlePrev}
                       handleRotate={handleRotate}
                       handleUpload={handleUpload} 
-                      imgs={imgs}/>
+                      imgs={imgs}
+                      />
         </React.Fragment>
     )
 }

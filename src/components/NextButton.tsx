@@ -8,7 +8,7 @@ interface Props {
 const NextButton: React.FC<Props> = (props) => {
 
 return (
-    <Button  onClick={props.handleNext} >{'>'}</Button>
+    <Button  onClick={props.handleNext} variant="contained" >{'>'}</Button>
          
 );}
 export default NextButton;

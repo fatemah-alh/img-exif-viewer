@@ -3,13 +3,15 @@ import {Button, Grid  } from '@mui/material';
 
 import NextButton from './NextButton';
 import PrevButton from './PrevButton';
-import {AiOutlineRotateRight,AiOutlineUpload} from 'react-icons/ai'
+import UploadButton from './UploadButton';
+import RotateButton from './RotateUpload';
+
 
 interface Props{
     handlePrev: React.MouseEventHandler<HTMLButtonElement>;
     handleNext: React.MouseEventHandler<HTMLButtonElement>;
     handleRotate:React.MouseEventHandler<HTMLButtonElement>;
-    handleUpload:React.MouseEventHandler<HTMLButtonElement>
+    handleUpload:React.ChangeEventHandler<HTMLInputElement>
 }
 
 const CustomBar:React.FC<Props>=(props)=>{
@@ -19,14 +21,19 @@ const CustomBar:React.FC<Props>=(props)=>{
 //Geolocation
 
     return(
-        <Grid container  sx={{paddingLeft:2,paddingRight:2}} >
-            <Grid item lg={4}>
-                <Button onClick={props.handleUpload} startIcon={<AiOutlineUpload></AiOutlineUpload>}>Upload</Button>
-                <Button onClick={props.handleRotate} startIcon={<AiOutlineRotateRight size={16}/>}> Rotate</Button>
+        <Grid container   sx={{paddingLeft:2,paddingRight:2,paddingTop:1}} >
+            <Grid item lg={1.5} >
+                <UploadButton handleUpload={props.handleUpload}/>
             </Grid>
-            <Grid item lg={4}>
-                <PrevButton handlePrev={props.handlePrev}/>
-                <NextButton handleNext={props.handleNext} />
+            <Grid item lg={1.5} >
+                <RotateButton handleRotate={props.handleRotate}/>
+            </Grid>
+            <Grid item lg={1.5} > </Grid>
+            <Grid item lg={1}>
+                <PrevButton handlePrev={props.handlePrev} />
+            </Grid>
+            <Grid item lg={1} >
+                <NextButton handleNext={props.handleNext}  />
             </Grid>
         
 
