@@ -13,7 +13,7 @@ const ImgView:React.FC<Props>=(props)=>{
             {props.imgs.map((img,key)=>
                 (<Image
                         key={key}
-                        src={img}
+                        src={require('../../public'+img)}
                         alt="Next.js Logo"
                         width={400}
                         height={400}
