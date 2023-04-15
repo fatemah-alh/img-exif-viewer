@@ -3,8 +3,11 @@ import {Button, Grid  } from '@mui/material';
 import  ExifView from './ExifView'
 import ImgView from './ImgView';
 import Bar from './Bar';
+import ListImgs from './ListImgs';
 interface Props{
     imgs:string[],
+    selectedImg:number,
+  
     handlePrev: React.MouseEventHandler<HTMLButtonElement>;
     handleNext: React.MouseEventHandler<HTMLButtonElement>;
     handleRotate:React.MouseEventHandler<HTMLButtonElement>;
@@ -20,10 +23,11 @@ const MainView:React.FC<Props>=(props)=>{
                 handleRotate={props.handleRotate}
                 handleUpload={props.handleUpload}/>
             <Grid item lg={9}>
-                <ImgView imgs={props.imgs}/>
+                <ImgView imgs={props.imgs} selectedImg={props.selectedImg}/>
+                <ListImgs imgs={props.imgs} selectedImg={props.selectedImg}/>
             </Grid>
             <Grid item lg={3}>
-                <ExifView />
+                <ExifView imgs={props.imgs} selectedImg={props.selectedImg} />
             </Grid>
             
         </React.Fragment>
