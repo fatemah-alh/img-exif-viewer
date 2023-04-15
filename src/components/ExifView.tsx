@@ -18,6 +18,7 @@ const ExifView:React.FC<Props>=(props)=>{
         if(current!=null){
             (async () => {
                 let output = await exifr.parse(current);
+                console.log("exif",output)
                 setData(output);
               })();
         }
