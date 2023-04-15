@@ -6,7 +6,8 @@ import {Button, Grid ,Box } from '@mui/material';
 
 interface Props{
       imgs:string[]
-      selectedImg:number
+      selectedImg:number,
+      ViewElement:React.Ref<HTMLImageElement>
 }
 
 const ImgView:React.FC<Props>=(props)=>{
@@ -14,7 +15,8 @@ const ImgView:React.FC<Props>=(props)=>{
         <React.Fragment>
 
         <Box sx={{padding:2, width: 'auto',maxHeight: '560px'}}>
-            <Image      
+            <Image  
+                    ref={props.ViewElement}
                     src={props.imgs[props.selectedImg]}
                     alt="Main Img"
                     width={400}

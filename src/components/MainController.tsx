@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from 'react'
+import React,{ useState,useEffect,useRef } from 'react'
 import MainView from './MainView'
 import MainModel from './MainModel'
  
@@ -10,10 +10,9 @@ const MainController:React.FC<Props>=(props)=>{
     const model=MainModel()
     const initialImgs=model.images
     const [imgs,setImgs]=useState(initialImgs);
-
     const [selectedImg,setSelectedImg]=useState(0);
+    const  ViewElement = useRef<HTMLImageElement>(null)
     
-    const [uploadedImgs,setUploadedImgs]=useState()
 
 
    
@@ -42,12 +41,13 @@ const MainController:React.FC<Props>=(props)=>{
 
     return(
         <React.Fragment>
-            <MainView handleNext={handleNext}
+            <MainView  
+                      handleNext={handleNext}
                       handlePrev={handlePrev}
                       handleRotate={handleRotate}
                       handleUpload={handleUpload} 
                       selectedImg={selectedImg}
-                     
+                      ViewElement={ViewElement}
                       imgs={imgs}
                       />
         </React.Fragment>
