@@ -27,7 +27,7 @@ const MainView:React.FC<Props>=(props)=>{
                     <ImgView imgs={props.imgs}  ViewElement={props.ViewElement} selectedImg={props.selectedImg}/>
                     <ListImgs imgs={props.imgs} selectedImg={props.selectedImg}/>
                 </Grid>
-                <Grid item lg={4} md={4} xs={6}>
+                <Grid item lg={4} md={4} xs={6} sx={{padding:2}}>
                     <ExifView imgs={props.imgs} ViewElement={props.ViewElement} selectedImg={props.selectedImg} />
                 </Grid>
             </Grid>

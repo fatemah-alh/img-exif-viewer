@@ -11,37 +11,43 @@ interface Props{
 const ExifView:React.FC<Props>=(props)=>{
     const [data,setData]=useState({'gps':""})
     
-    useEffect(()=>{
+    useEffect( ()=>{
         console.log(props.ViewElement)
         let {current}=props.ViewElement
         let data1={'gps':""}
         if(current!=null){
-            console.log("dentro if",current)
-            exifr.parse(current).then(output => {console.log(output); setData(output); data1=output
-            })
-            if(data1.gps){
-                console.log(data1.gps)
-            }
+            (async () => {
+                let output = await exifr.parse(current);
+                setData(output);
+              })();
         }
         
         
     }, [props.ViewElement])
 
+    
    // exifr.parse(props.imgs[props.selectedImg]).then(output => console.log(output))
    //: {data[key as keyof typeof data].toString()}
     return(
+        <React.Fragment>
         <Box>
-       
-       { data&&Object.keys(data).map((key,i) =>
+                    Exif data
+                </Box>
+        <Box sx={{  height:'30rem',
+                    overflowY: "scroll",
+                    }}>
+                
+                { data&&Object.keys(data).map((key,i) =>
 
-             {  
-                return (data[key as keyof typeof data]!=null&& <Box key={i} sx={{display:'flex'}}>
-                <Typography sx={{fontWeight:600,color:'blue'}}>{key}:</Typography>
-                <Typography>{data[key as keyof typeof data].toString()}</Typography>
-            </Box>)})
-       
-       }
+                    {  
+                        return (data[key as keyof typeof data]!=null&& <Box key={i} sx={{display:'flex'}}>
+                        <Typography sx={{fontWeight:600,color:'blue'}}>{key}:</Typography>
+                        <Typography>{data[key as keyof typeof data].toString()}</Typography>
+                    </Box>)})
+                
+                }
         </Box>
+        </React.Fragment>
     )
 }
 
