@@ -17,11 +17,22 @@ const MainController:React.FC<Props>=(props)=>{
 
    
 
-    const handlePrev=()=>{
+    const handlePrev=(e:React.MouseEvent)=>{
+        let newIndex=selectedImg-1
+        console.log('newIndex',newIndex)
+        if(newIndex < 0){
+            newIndex=imgs.length-1
+            console.log('newIndex',newIndex)
+        }
+        setSelectedImg(newIndex)
 
     }
     const handleNext=()=>{
-        
+        let newIndex=selectedImg+1
+        if(newIndex>imgs.length-1){
+            newIndex=0
+        }
+        setSelectedImg(newIndex)
     }
     const handleRotate=()=>{
 

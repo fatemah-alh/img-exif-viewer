@@ -14,14 +14,13 @@ const ImgView:React.FC<Props>=(props)=>{
     return(
         <React.Fragment>
 
-        <Box sx={{padding:2, width: 'auto',maxHeight: '560px'}}>
-            <Image  
-                    ref={props.ViewElement}
+        <Box  sx={{padding:2, width: 'auto',maxHeight: '560px'}}>
+            <Image  ref={props.ViewElement}
+                    id="id-main-img"
                     src={props.imgs[props.selectedImg]}
                     alt="Main Img"
                     width={400}
                     height={400}
-                    
                     priority
                     />
         </Box>
