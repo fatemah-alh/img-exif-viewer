@@ -1,6 +1,9 @@
 import React,{ useState,useEffect,useRef} from 'react'
 import exifr from 'exifr' 
 import EXIF from "exif-js";
+import ExifReader from 'exifreader';
+import RNFS from 'react-native-fs';
+import {decode} from 'base64-arraybuffer';
 import { Typography ,Box } from '@mui/material'
 
 interface Props{
@@ -11,35 +14,23 @@ interface Props{
 
 const ExifView:React.FC<Props>=(props)=>{
     const [data,setData]=useState({'gps':""})
-    const [element,setElement]=useState<React.RefObject<HTMLImageElement>>()
     console.log(props.ViewElement)
-    
+   
     useEffect( ()=>{
-        if(props.ViewElement!=element){
-            let {current}=props.ViewElement
-            let data1={'gps':""}
-            setElement(props.ViewElement)
-            if(current!=null){
-                EXIF.getData(current, function() {
-                    var exifData = EXIF.getAllTags(current);
-                    if (exifData) {
-                        console.log('exifData: ', JSON.stringify(exifData));
-                        setData(exifData);
-                    } else {
-                        console.log("No EXIF data found in image '" + current + "'.");
-                    }
-                })
-                
-                /* 
-                (async () => {
-                    let output = await exifr.parse(current);
-                    console.log("exif",output)
-                    setData(output);
-                  })();
-                  */
-            }
-        }
-    }, [props.ViewElement,element])
+        let src =props.imgs[props.selectedImg]
+        console.log(src);
+        (async () => {
+            //const b64Buffer = await RNFS.readFileAssets(src, 'base64') // Where the URI looks like this: "file:///path/to/image/IMG_0123.HEIC"
+            //const fileBuffer = decode(b64Buffer)
+            //let {current}=props.ViewElement
+            // const tags = ExifReader.load(current, {expanded: true});
+            let output = await exifr.parse(src);
+            console.log("exif",output)
+            setData(output);
+            })();
+                 
+       
+    }, [props.imgs,props.selectedImg])
 
     
    // exifr.parse(props.imgs[props.selectedImg]).then(output => console.log(output))

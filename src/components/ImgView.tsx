@@ -11,13 +11,14 @@ interface Props{
 }
 
 const ImgView:React.FC<Props>=(props)=>{
+    let src =require('../../public'+props.imgs[props.selectedImg])
     return(
         <React.Fragment>
 
         <Box  sx={{padding:2, width: 'auto',maxHeight: '560px'}}>
             <Image  ref={props.ViewElement}
                     id="id-main-img"
-                    src={props.imgs[props.selectedImg]}
+                    src={src}
                     alt="Main Img"
                     width={400}
                     height={400}

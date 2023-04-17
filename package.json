@@ -16,14 +16,17 @@
     "@types/node": "18.15.11",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
+    "base64-arraybuffer": "^1.0.2",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "exif-js": "^2.3.0",
     "exifr": "^7.1.3",
+    "exifreader": "^4.12.0",
     "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
+    "react-native-fs": "^2.20.0",
     "typescript": "5.0.4"
   },
   "devDependencies": {
