@@ -5,20 +5,20 @@ import NextButton from './NextButton';
 import PrevButton from './PrevButton';
 import UploadButton from './UploadButton';
 import RotateButton from './RotateUpload';
-
+import LocationButton from './LocationButton';
 
 interface Props{
     handlePrev: React.MouseEventHandler<HTMLButtonElement>;
     handleNext: React.MouseEventHandler<HTMLButtonElement>;
     handleRotate:React.MouseEventHandler<HTMLButtonElement>;
-    handleUpload:React.ChangeEventHandler<HTMLInputElement>
+    handleUpload:React.ChangeEventHandler<HTMLInputElement>;
+    handleLocation:React.MouseEventHandler<HTMLButtonElement>;
+    enabelGps:boolean
 }
 
 const CustomBar:React.FC<Props>=(props)=>{
-
-    //rotoation button
-    //upload new files
-//Geolocation
+//<LocationButton handleClick={props.handleLocation} enable={props.}/>
+    
 
     return(
         <Grid container   sx={{paddingLeft:2,paddingRight:2,paddingTop:1}} >
@@ -28,7 +28,10 @@ const CustomBar:React.FC<Props>=(props)=>{
             <Grid item lg={1.5} >
                 <RotateButton handleRotate={props.handleRotate}/>
             </Grid>
-            <Grid item lg={1.5} > </Grid>
+
+            <Grid item lg={1.5} > 
+                <LocationButton handleClick={props.handleLocation} enable={props.enabelGps}/>
+            </Grid>
             <Grid item lg={1}>
                 <PrevButton handlePrev={props.handlePrev} />
             </Grid>

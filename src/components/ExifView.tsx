@@ -3,29 +3,12 @@ import exifr from 'exifr'
 import { Typography ,Box } from '@mui/material'
 
 interface Props{
-    imgsPaths:string[]
-    selectedImg:number,
-  
+    exifData:any
 }
 
 const ExifView:React.FC<Props>=(props)=>{
-    const [data,setData]=useState({'gps':""})
+    let data=props.exifData
 
-   
-    useEffect( ()=>{
-        let src =props.imgsPaths[props.selectedImg]
-        console.log(src);
-        (async () => {
-           
-            let output = await exifr.parse(src);
-            console.log("exif",output)
-            setData(output);
-            })();
-                 
-       
-    }, [props.imgsPaths,props.selectedImg])
-
-    
     return(
         <React.Fragment>
             

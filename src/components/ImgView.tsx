@@ -5,12 +5,13 @@ import Image from 'next/image'
 import {Button, Grid ,Box } from '@mui/material';
 
 interface Props{
-      imgs:string[]
-      selectedImg:number,
+      img:string,
+      rotation:number
 }
 
 const ImgView:React.FC<Props>=(props)=>{
-    let src =props.imgs[props.selectedImg]
+    let src =props.img
+    let rotation=props.rotation;
     return(
         <React.Fragment>
 
@@ -21,6 +22,8 @@ const ImgView:React.FC<Props>=(props)=>{
                     alt="Main Img"
                     width={400}
                     height={400}
+                    
+                    style={{transform: `rotate(${rotation}deg)`}}
                     priority
                     />
         </Box>

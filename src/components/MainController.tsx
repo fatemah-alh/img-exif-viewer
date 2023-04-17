@@ -1,7 +1,8 @@
 import React,{ useState,useEffect,useRef } from 'react'
 import MainView from './MainView'
 import MainModel from './MainModel'
- 
+import { GPSdata } from './interfaces'
+import exifr from 'exifr' 
 interface Props{
 
 }
@@ -13,6 +14,9 @@ const MainController:React.FC<Props>=(props)=>{
     const [imgs,setImgs]=useState(initialImgs);
     const [imgsPaths,setImgsPath]=useState(initialImgsPaths)
     const [selectedImg,setSelectedImg]=useState(0);
+    const [exifData,setExifData]=useState({'gps':""})
+    const [ gpsData,setGpsData]=useState<GPSdata|undefined>()
+    const [rotation,setRotation]=useState(0)
     
     
 
@@ -21,24 +25,30 @@ const MainController:React.FC<Props>=(props)=>{
 
     const handlePrev=(e:React.MouseEvent)=>{
         let newIndex=selectedImg-1
-        console.log('newIndex',newIndex)
+        
         if(newIndex < 0){
             newIndex=imgs.length-1
             console.log('newIndex',newIndex)
         }
         setSelectedImg(newIndex)
+        setRotation(0)
 
     }
     const handleNext=()=>{
         let newIndex=selectedImg+1
         if(newIndex>imgs.length-1){
             newIndex=0
+            console.log('newIndex',newIndex)
         }
         setSelectedImg(newIndex)
+        setRotation(0)
     }
     const handleRotate=()=>{
-
-
+        let newRotate=rotation + 90
+        if(newRotate>=360){
+            newRotate=- 360
+        }
+        setRotation(newRotate)
     }
     const handleUpload=(event:React.ChangeEvent<HTMLInputElement>)=>{
        const  files=event.target.files ;
@@ -50,8 +60,35 @@ const MainController:React.FC<Props>=(props)=>{
             setImgs( arrayFiles)
             setImgsPath(arrayFiles)
             setSelectedImg(0)
+            setRotation(0)
         } 
     }
+    const handleLocation=(event:React.MouseEvent)=>{
+        //Linking.openURL('https://www.google.com/maps/search/?api=1&query=address');
+
+    }
+    // handleExifData
+    
+    useEffect( ()=>{
+        let src =imgsPaths[selectedImg]
+        console.log(src);
+        (async () => {
+           
+            let output = await exifr.parse(src);
+            let g = await exifr.gps(src)
+            if (g){
+                    console.log('gps', g);
+                    setGpsData(g)
+                    }
+            else{
+                setGpsData(undefined);
+            }
+            setExifData(output);
+            console.log(output)
+            })();
+                 
+       
+    }, [imgsPaths,selectedImg])
 
     return(
         <React.Fragment>
@@ -62,7 +99,10 @@ const MainController:React.FC<Props>=(props)=>{
                       handleUpload={handleUpload} 
                       selectedImg={selectedImg}
                       imgs={imgs}
-                      imgsPaths={imgsPaths}
+                      exifData={exifData}
+                      gpsData={gpsData}
+                      rotation={rotation}
+                      handleLocation={handleLocation}
                       />
         </React.Fragment>
     )

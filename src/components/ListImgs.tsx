@@ -15,10 +15,10 @@ const ListImgs:React.FC<Props>=(props)=>{
     return(
         <React.Fragment>
 
-        <Grid container sx={{padding:2}}>
+        <Grid container sx={{padding:2,alignContent:'center'}}>
             {props.imgs.map((img,key)=>{
                 
-                return (<Grid item  key={key} sx={{border: '2px solid black'}}>
+                return (<Grid item  key={key} sx={[key==props.selectedImg&&{border: '2px solid blue'},{padding:'5px'}]}>
                             <Image
                                 src={img}
                                 alt="Next.js Logo"

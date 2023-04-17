@@ -4,11 +4,14 @@ import  ExifView from './ExifView'
 import ImgView from './ImgView';
 import Bar from './Bar';
 import ListImgs from './ListImgs';
+import { GPSdata } from './interfaces';
 interface Props{
     imgs:string[],
-    imgsPaths:string[],
     selectedImg:number,
-   
+    exifData:any,
+    gpsData:GPSdata|undefined,
+    rotation:number,
+    handleLocation:React.MouseEventHandler<HTMLButtonElement>;
     handlePrev: React.MouseEventHandler<HTMLButtonElement>;
     handleNext: React.MouseEventHandler<HTMLButtonElement>;
     handleRotate:React.MouseEventHandler<HTMLButtonElement>;
@@ -22,14 +25,18 @@ const MainView:React.FC<Props>=(props)=>{
            <Bar handleNext={props.handleNext} 
                 handlePrev={props.handlePrev}  
                 handleRotate={props.handleRotate}
-                handleUpload={props.handleUpload}/>
+                handleUpload={props.handleUpload}
+                handleLocation={props.handleLocation}
+                enabelGps={props.gpsData==undefined?false:true}
+                />
+               
             <Grid container >
                 <Grid item lg={8} md={8} xs={6}>
-                    <ImgView imgs={props.imgs}  selectedImg={props.selectedImg}/>
+                    <ImgView img={props.imgs[props.selectedImg]} rotation={props.rotation}/>
                     <ListImgs imgs={props.imgs} selectedImg={props.selectedImg}/>
                 </Grid>
                 <Grid item lg={4} md={4} xs={6} sx={{padding:2}}>
-                    <ExifView imgsPaths={props.imgsPaths}  selectedImg={props.selectedImg} />
+                    <ExifView exifData={props.exifData} />
                 </Grid>
             </Grid>
         </React.Fragment>
