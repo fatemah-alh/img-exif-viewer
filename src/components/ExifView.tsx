@@ -1,5 +1,6 @@
 import React,{ useState,useEffect,useRef} from 'react'
 import exifr from 'exifr' 
+import EXIF from "exif-js";
 import { Typography ,Box } from '@mui/material'
 
 interface Props{
@@ -19,11 +20,23 @@ const ExifView:React.FC<Props>=(props)=>{
             let data1={'gps':""}
             setElement(props.ViewElement)
             if(current!=null){
+                EXIF.getData(current, function() {
+                    var exifData = EXIF.getAllTags(current);
+                    if (exifData) {
+                        console.log('exifData: ', JSON.stringify(exifData));
+                        setData(exifData);
+                    } else {
+                        console.log("No EXIF data found in image '" + current + "'.");
+                    }
+                })
+                
+                /* 
                 (async () => {
                     let output = await exifr.parse(current);
                     console.log("exif",output)
                     setData(output);
                   })();
+                  */
             }
         }
     }, [props.ViewElement,element])
