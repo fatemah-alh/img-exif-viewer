@@ -22,20 +22,21 @@ const MainView:React.FC<Props>=(props)=>{
     return(
         <React.Fragment>
             
-           <Bar handleNext={props.handleNext} 
-                handlePrev={props.handlePrev}  
-                handleRotate={props.handleRotate}
-                handleUpload={props.handleUpload}
-                handleLocation={props.handleLocation}
-                enabelGps={props.gpsData==undefined?false:true}
-                />
+           
                
             <Grid container >
-                <Grid item lg={8} md={8} xs={6}>
+                <Grid item lg={8} md={8} xs={7}>
+                    <Bar handleNext={props.handleNext} 
+                    handlePrev={props.handlePrev}  
+                    handleRotate={props.handleRotate}
+                    handleUpload={props.handleUpload}
+                    handleLocation={props.handleLocation}
+                    enabelGps={props.gpsData==undefined?false:true}
+                    />
                     <ImgView img={props.imgs[props.selectedImg]} rotation={props.rotation}/>
                     <ListImgs imgs={props.imgs} selectedImg={props.selectedImg}/>
                 </Grid>
-                <Grid item lg={4} md={4} xs={6} sx={{padding:2}}>
+                <Grid item lg={4} md={4} xs={5} sx={{paddingLeft:2,paddingRight:2,paddingTop:1}}>
                     <ExifView exifData={props.exifData} />
                 </Grid>
             </Grid>

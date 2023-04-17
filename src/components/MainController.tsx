@@ -17,12 +17,6 @@ const MainController:React.FC<Props>=(props)=>{
     const [exifData,setExifData]=useState({'gps':""})
     const [ gpsData,setGpsData]=useState<GPSdata|undefined>()
     const [rotation,setRotation]=useState(0)
-    
-    
-
-
-   
-
     const handlePrev=(e:React.MouseEvent)=>{
         let newIndex=selectedImg-1
         
@@ -64,8 +58,8 @@ const MainController:React.FC<Props>=(props)=>{
         } 
     }
     const handleLocation=(event:React.MouseEvent)=>{
-        //Linking.openURL('https://www.google.com/maps/search/?api=1&query=address');
-
+       
+        window.open("https://maps.google.com?q="+gpsData?.latitude+","+gpsData?.longitude );
     }
     // handleExifData
     
