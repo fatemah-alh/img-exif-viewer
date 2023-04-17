@@ -1,40 +1,31 @@
 import React,{ useState,useEffect,useRef} from 'react'
 import exifr from 'exifr' 
-import EXIF from "exif-js";
-import ExifReader from 'exifreader';
-import RNFS from 'react-native-fs';
-import {decode} from 'base64-arraybuffer';
 import { Typography ,Box } from '@mui/material'
 
 interface Props{
-    imgs:string[]
+    imgsPaths:string[]
     selectedImg:number,
-    ViewElement:React.RefObject<HTMLImageElement>
+  
 }
 
 const ExifView:React.FC<Props>=(props)=>{
     const [data,setData]=useState({'gps':""})
-    console.log(props.ViewElement)
+
    
     useEffect( ()=>{
-        let src =props.imgs[props.selectedImg]
+        let src =props.imgsPaths[props.selectedImg]
         console.log(src);
         (async () => {
-            //const b64Buffer = await RNFS.readFileAssets(src, 'base64') // Where the URI looks like this: "file:///path/to/image/IMG_0123.HEIC"
-            //const fileBuffer = decode(b64Buffer)
-            //let {current}=props.ViewElement
-            // const tags = ExifReader.load(current, {expanded: true});
+           
             let output = await exifr.parse(src);
             console.log("exif",output)
             setData(output);
             })();
                  
        
-    }, [props.imgs,props.selectedImg])
+    }, [props.imgsPaths,props.selectedImg])
 
     
-   // exifr.parse(props.imgs[props.selectedImg]).then(output => console.log(output))
-   //: {data[key as keyof typeof data].toString()}
     return(
         <React.Fragment>
             

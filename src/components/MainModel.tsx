@@ -8,8 +8,10 @@ function importAll() {
   
 const MainModel= () => {
   //require('../../public'+
-    const images = importAll().map((img)=>(img.substring(1)));
+    const imagesPaths = importAll().map((img)=>(img.substring(1)));
+    const images= importAll().map((img)=>(require('../../public'+img.substring(1))));
+
     
-    return{images}
+    return{imagesPaths,images}
 }
 export default MainModel;

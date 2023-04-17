@@ -9,9 +9,11 @@ interface Props{
 const MainController:React.FC<Props>=(props)=>{
     const model=MainModel()
     const initialImgs=model.images
+    const initialImgsPaths=model.imagesPaths
     const [imgs,setImgs]=useState(initialImgs);
+    const [imgsPaths,setImgsPath]=useState(initialImgsPaths)
     const [selectedImg,setSelectedImg]=useState(0);
-    const  ViewElement = useRef<HTMLImageElement>(null)
+    
     
 
 
@@ -46,6 +48,7 @@ const MainController:React.FC<Props>=(props)=>{
                 arrayFiles.push( URL.createObjectURL(files[i]));
             }
             setImgs( arrayFiles)
+            setImgsPath(arrayFiles)
             setSelectedImg(0)
         } 
     }
@@ -58,8 +61,8 @@ const MainController:React.FC<Props>=(props)=>{
                       handleRotate={handleRotate}
                       handleUpload={handleUpload} 
                       selectedImg={selectedImg}
-                      ViewElement={ViewElement}
                       imgs={imgs}
+                      imgsPaths={imgsPaths}
                       />
         </React.Fragment>
     )

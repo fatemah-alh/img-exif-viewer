@@ -6,8 +6,9 @@ import Bar from './Bar';
 import ListImgs from './ListImgs';
 interface Props{
     imgs:string[],
+    imgsPaths:string[],
     selectedImg:number,
-    ViewElement:React.RefObject<HTMLImageElement>
+   
     handlePrev: React.MouseEventHandler<HTMLButtonElement>;
     handleNext: React.MouseEventHandler<HTMLButtonElement>;
     handleRotate:React.MouseEventHandler<HTMLButtonElement>;
@@ -24,11 +25,11 @@ const MainView:React.FC<Props>=(props)=>{
                 handleUpload={props.handleUpload}/>
             <Grid container >
                 <Grid item lg={8} md={8} xs={6}>
-                    <ImgView imgs={props.imgs}  ViewElement={props.ViewElement} selectedImg={props.selectedImg}/>
+                    <ImgView imgs={props.imgs}  selectedImg={props.selectedImg}/>
                     <ListImgs imgs={props.imgs} selectedImg={props.selectedImg}/>
                 </Grid>
                 <Grid item lg={4} md={4} xs={6} sx={{padding:2}}>
-                    <ExifView imgs={props.imgs} ViewElement={props.ViewElement} selectedImg={props.selectedImg} />
+                    <ExifView imgsPaths={props.imgsPaths}  selectedImg={props.selectedImg} />
                 </Grid>
             </Grid>
         </React.Fragment>
