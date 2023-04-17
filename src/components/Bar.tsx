@@ -21,7 +21,7 @@ const CustomBar:React.FC<Props>=(props)=>{
     
 
     return(
-        <Grid container   sx={{paddingLeft:2,paddingRight:2,paddingTop:1}} >
+        <Grid container  >
             <Grid item lg={7} md={8} >
                 <ButtonGroup>
                     <UploadButton handleUpload={props.handleUpload}/>

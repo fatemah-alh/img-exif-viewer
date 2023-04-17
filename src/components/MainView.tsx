@@ -24,7 +24,7 @@ const MainView:React.FC<Props>=(props)=>{
             
            
                
-            <Grid container >
+            <Grid container  sx={{padding:1,paddingRight:4,paddingLeft:4}}>
                 <Grid item lg={8} md={8} xs={7}>
                     <Bar handleNext={props.handleNext} 
                     handlePrev={props.handlePrev}  
@@ -36,7 +36,7 @@ const MainView:React.FC<Props>=(props)=>{
                     <ImgView img={props.imgs[props.selectedImg]} rotation={props.rotation}/>
                     <ListImgs imgs={props.imgs} selectedImg={props.selectedImg}/>
                 </Grid>
-                <Grid item lg={4} md={4} xs={5} sx={{paddingLeft:2,paddingRight:2,paddingTop:1}}>
+                <Grid item lg={4} md={4} xs={5} >
                     <ExifView exifData={props.exifData} />
                 </Grid>
             </Grid>

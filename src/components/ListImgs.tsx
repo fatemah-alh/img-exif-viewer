@@ -15,9 +15,8 @@ const ListImgs:React.FC<Props>=(props)=>{
     return(
         <React.Fragment>
 
-        <Grid container sx={{padding:2,alignContent:'center'}}>
+        <Grid container>
             {props.imgs.map((img,key)=>{
-                
                 return (<Grid item  key={key} sx={[key==props.selectedImg&&{border: '2px solid #1976d2'},{padding:'5px'}]}>
                             <Image
                                 src={img}
