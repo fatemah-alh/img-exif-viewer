@@ -17,8 +17,7 @@ interface Props{
 }
 
 const CustomBar:React.FC<Props>=(props)=>{
-//<LocationButton handleClick={props.handleLocation} enable={props.}/>
-    
+//sx={{width:'6rem',height:'2rem',fontSize:'0.8rem'}}
 
     return(
         <Grid container  >

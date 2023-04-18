@@ -10,7 +10,14 @@ interface Props {
 const LocationButton: React.FC<Props> = (props) => {
 
 return (
-    <Button  onClick={props.handleClick} variant="contained" startIcon={<ImLocation />} sx={[!props.enable&&{pointerEvents:'none',opacity:0.5}]}>Show</Button>
+    <Button  onClick={props.handleClick} 
+             variant="contained" 
+             startIcon={<ImLocation />} 
+             sx={[!props.enable&&{pointerEvents:'none',opacity:0.5},]}
+
+    >
+        Show
+    </Button>
          
 );}
 export default LocationButton;

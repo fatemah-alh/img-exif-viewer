@@ -31,7 +31,7 @@ const ImgView:React.FC<Props>=(props)=>{
                             width={500}
                             height={560}
                             style={{ ...style,
-                                    maxHeight: '80vh',
+                                    maxHeight: '77vh',
                                     transform: `rotate(${rotation}deg) `,
                                     objectFit: 'scale-down',
                                     width:"100%",
