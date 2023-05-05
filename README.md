@@ -19,7 +19,7 @@ This application implements the following features:
 
 **• View multiple images:** allow the user to specify more than one image from a file selector.There is controls for switching/cycling to next/previous image in the list.
 
-## About Model View Controll (MVC):
+## About Model View Control (MVC):
 
 This application implement MVC, inside the folder src/components you can check the relative models inside the following files:
 MainModel.tsx,MainView.tsx, MainController.tsx
